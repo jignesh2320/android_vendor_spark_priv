@@ -58,3 +58,6 @@ for index in "${!apexes[@]}"; do
 done
 echo "" >> keys.mk
 echo "PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/superior-priv/keys/releasekey" >> keys.mk
+
+# Delete files and directories after key generation
+rm -rf .git .gitignore _data README.md gen_keys
