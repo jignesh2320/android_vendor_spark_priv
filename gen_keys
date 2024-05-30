@@ -10,7 +10,7 @@ for cert in $(cat _data/cert_keys.txt); do
     key_platform="/home/$USER/.android-certs/${cert}.pem"
     cert_file="$(pwd)/${cert}.x509.pem"
     if [ ! -f ${key_platform} ]; then
-        openssl genrsa -f4 4096 | tee ${key_platform}
+        openssl genrsa -f4 4096 > ${key_platform} 2>/dev/null
     fi
     if ! openssl x509 -checkend 86400 -noout -in ${cert_file} &> /dev/null; then
         openssl req -new -x509 ${hash} -key ${key_platform} -out ${cert_file} -days 10000 -subj "$subject"
@@ -24,7 +24,7 @@ for apex in $(cat _data/apex_keys.txt); do
     key_apex="/home/$USER/.android-certs/${apex}.pem"
     cert_file="$(pwd)/${apex}.certificate.override.x509.pem"
     if [ ! -f ${key_apex} ]; then
-        openssl genrsa -f4 4096 | tee ${key_apex}
+        openssl genrsa -f4 4096 > ${key_apex} 2>/dev/null
     fi
     if ! openssl x509 -checkend 86400 -noout -in ${cert_file} &> /dev/null; then
         openssl req -new -x509 ${hash} -key ${key_apex} -out ${cert_file} -days 10000 -subj "$subject"
@@ -57,4 +57,4 @@ for index in "${!apexes[@]}"; do
     fi
 done
 echo "" >> keys.mk
-echo "PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/lineage-priv/keys/releasekey" >> keys.mk
+echo "PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/superior-priv/keys/releasekey" >> keys.mk
