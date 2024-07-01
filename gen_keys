@@ -5,7 +5,7 @@ mkdir -p /home/$USER/.android-certs/
 hash="-sha256"
 
 # Cert keys
-subject="/C=IN/ST=Gujarat/L=Surat View/O=Jignesh/OU=Jignesh/CN=Jignesh/emailAddress=jigneshshukla973@gmail.com"
+subject="/C=IN/ST=Gujarat/L=Surat View/O=ayush/OU=ayush/CN=ayush/emailAddress=proayush736@gmail.com"
 for cert in $(cat _data/cert_keys.txt); do
     key_platform="/home/$USER/.android-certs/${cert}.pem"
     cert_file="$(pwd)/${cert}.x509.pem"
@@ -20,7 +20,7 @@ done
 
 # Apex keys
 for apex in $(cat _data/apex_keys.txt); do
-    subject="/C=IN/ST=Gujarat/L=Surat View/O=Jignesh/OU=Jignesh/CN=${apex}/emailAddress=jigneshshukla973@gmail.com"
+    subject="/C=IN/ST=Gujarat/L=Surat View/O=ayush/OU=ayush/CN=${apex}/emailAddress=proayush736@gmail.com"
     key_apex="/home/$USER/.android-certs/${apex}.pem"
     cert_file="$(pwd)/${apex}.certificate.override.x509.pem"
     if [ ! -f ${key_apex} ]; then
